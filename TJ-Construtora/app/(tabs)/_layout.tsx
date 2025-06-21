@@ -1,30 +1,65 @@
-import { Tabs } from 'expo-router';
-import { FontAwesome } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "../../constants/Colors";
 
-export default function RootLayout() {
+export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: true }}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.gray,
+        tabBarStyle: {
+          backgroundColor: Colors.white,
+          borderTopWidth: 0,
+          height: 60,
+          paddingBottom: 5,
+        },
+      }}
+    >
+      {/* Aba 1: Cadastro de Obras */}
+
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
-          tabBarIcon: ({ color, size }) => <FontAwesome name="home" color={color} size={size} />,
-          title: 'Home',
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+
+            <Ionicons name="home" size={24} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="cadastroObras/index"
+        options={{
+          title: "Obras",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="construct" size={24} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="cadastroFiscalizacao/index"
+        options={{
+          title: "Fiscalização",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="clipboard" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="cadastrar"
+        name="detalhesObras/index"
         options={{
-          tabBarIcon: ({ color, size }) => <FontAwesome name="plus-square" color={color} size={size} />,
-          title: 'Cadastrar',
+          title: "Detalhes",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="document-text" size={24} color={color} />
+          ),
         }}
       />
-      <Tabs.Screen
-        name="obra"
-        options={{
-          tabBarIcon: ({ color, size }) => <FontAwesome name="building" color={color} size={size} />,
-          title: 'Obras',
-        }}
-      />
+
+      {/* Aba 2: Cadastro de Fiscalização */}
     </Tabs>
   );
 }
